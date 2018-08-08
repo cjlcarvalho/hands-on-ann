@@ -41,7 +41,7 @@ def training():
 
     while True:
 
-        for i in range(4):
+        for i in range(len(mat)):
 
             output = compute(mat[i][0], mat[i][1])
 
