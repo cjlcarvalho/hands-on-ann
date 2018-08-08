@@ -1,11 +1,10 @@
+import sys
+
 # Initial weights
 weights = [0.0, 0.0, 0.0]
 
 # Test data
-mat = [[0, 1, 0], \
-       [1, 0, 0], \
-       [0, 0, 0], \
-       [1, 1, 1]]
+mat = []
 
 # Max number of training iterations
 epochs = 30
@@ -65,6 +64,28 @@ def predict(sample):
     sample[2] = compute(sample[0], sample[1])
 
 def main():
+
+    op = input('Choose your operation [AND/OR]: ')
+
+    global mat
+
+    if op == 'AND':
+
+        mat = [[0, 1, 0], \
+               [1, 0, 0], \
+               [0, 0, 0], \
+               [1, 1, 1]]
+
+    elif op == 'OR':
+
+        mat = [[0, 1, 1], \
+               [1, 0, 1], \
+               [0, 0, 0], \
+               [1, 1, 1]]
+
+    else:
+
+        sys.exit(1)
 
     print('Weights before training:')
     for i in weights:
