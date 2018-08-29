@@ -37,9 +37,7 @@ def training():
 
     count = 0
 
-    trained = True
-
-    while True:
+    while count < epochs:
 
         for i in range(len(mat)):
 
@@ -50,13 +48,7 @@ def training():
 
                 optimizeWeights(i, output)
 
-                trained = False
-
         count += 1
-
-        if trained or count >= epochs:
-
-            break
 
 # Predict according to a sample
 def predict(sample):
