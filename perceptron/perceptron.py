@@ -17,18 +17,15 @@ def compute(x1, x2):
 
     # Sum inputs to weights and bias
     net = (x1 * weights[0]) + (x2 * weights[1]) + ((-1) * weights[2])
-
     # Execute the activation function on the result
     return activate(net)
 
 # Optimize weights in case of errors
 def optimizeWeights(i, output):
 
-    weights[0] = weights[0] + (mat[i][2] - output) * mat[i][0]
-
-    weights[1] = weights[1] + (mat[i][2] - output) * mat[i][1]
-
-    weights[2] = weights[2] + (mat[i][2] - output) * -1
+    weights[0] += (mat[i][2] - output) * mat[i][0]
+    weights[1] += (mat[i][2] - output) * mat[i][1]
+    weights[2] += (mat[i][2] - output) * -1 # bias
 
 # Train your network
 def training():
@@ -36,14 +33,10 @@ def training():
     count = 0
 
     while count < epochs:
-
         for i in range(len(mat)):
-
             output = compute(mat[i][0], mat[i][1])
-
             # Optimize weights if the output is not equal to the expected value
             if output != mat[i][2]:
-
                 optimizeWeights(i, output)
 
         count += 1
@@ -60,21 +53,10 @@ def main():
     global mat
 
     if op == 'AND':
-
-        mat = [[0, 1, 0], \
-               [1, 0, 0], \
-               [0, 0, 0], \
-               [1, 1, 1]]
-
+        mat = [[0, 1, 0], [1, 0, 0], [0, 0, 0], [1, 1, 1]]
     elif op == 'OR':
-
-        mat = [[0, 1, 1], \
-               [1, 0, 1], \
-               [0, 0, 0], \
-               [1, 1, 1]]
-
+        mat = [[0, 1, 1], [1, 0, 1], [0, 0, 0], [1, 1, 1]]
     else:
-
         return
 
     print('Weights before training:')
@@ -89,13 +71,9 @@ def main():
         print(i, end=',')
     print()
 
-    samples = [[0, 1, -1], \
-               [1, 0, -1], \
-               [0, 0, -1], \
-               [1, 1, -1]]
+    samples = [[0, 1, -1], [1, 0, -1], [0, 0, -1], [1, 1, -1]]
 
     for sample in samples:
-
         predict(sample)
 
     print('Result:')
