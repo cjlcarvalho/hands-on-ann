@@ -1,5 +1,3 @@
-import sys
-
 # Initial weights
 weights = [0.0, 0.0, 0.0]
 
@@ -77,7 +75,7 @@ def main():
 
     else:
 
-        sys.exit(1)
+        return
 
     print('Weights before training:')
     for i in weights:
